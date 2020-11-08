@@ -1,6 +1,6 @@
 {
   "name": "@replygirl/tc",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "destructurable `try...catch` wrapper",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
