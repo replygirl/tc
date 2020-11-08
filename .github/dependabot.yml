@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+    reviewers:
+      - replygirl
+    assignees:
+      - replygirl
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+    versioning-strategy: increase-if-necessary
+    reviewers:
+      - replygirl
+    assignees:
+      - replygirl

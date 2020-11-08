@@ -1,0 +1,22 @@
+name: Publish to NPM
+on: release
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - id: tag
+      uses: WyriHaximus/github-action-get-previous-tag@master
+    - uses: reedyuk/npm-version@master
+      with:
+        version: ${{ steps.tag.outputs.tag }}
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
+    - run: yarn install
+    - run: yarn build
+    - run: yarn publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
