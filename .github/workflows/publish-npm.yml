@@ -1,5 +1,7 @@
 name: Publish to NPM
-on: release
+on:
+  release:
+    types: [published]
 
 jobs:
   publish:
