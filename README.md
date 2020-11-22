@@ -62,7 +62,7 @@ console.info(x ?? xe) // true
 const [y, ye] = tc<true>(() => { throw new Error() })
 console.info(y ?? ye) // Error
 
-const [x, xe] = await tc<true, true>(async () => true)
+const [z, ze] = await tc<true, true>(async () => true)
 console.info(z ?? ze) // true
 ```
 
