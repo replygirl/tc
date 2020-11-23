@@ -1,7 +1,6 @@
 name: Test
 on:
-  pull_request:
-    types: [assigned, edited, opened, reopened, synchronize]
+  [pull_request]
 
 jobs:
   mocha:
