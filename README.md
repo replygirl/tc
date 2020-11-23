@@ -1,6 +1,6 @@
 # `tc`
 
-destructurable, async-friendly `try...catch` wrapper function
+destructurable, async-friendly `try...catch` wrapper function with support for error side effects and fallback values
 
 ## Installation
 

@@ -1,7 +1,7 @@
 {
   "name": "@replygirl/tc",
   "version": "0.0.0",
-  "description": "destructurable, async-friendly `try...catch` wrapper function",
+  "description": "destructurable, async-friendly `try...catch` wrapper function with support for error side effects and fallback values",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
