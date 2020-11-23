@@ -1,7 +1,7 @@
 name: Test
 on:
-  push:
-    branches: [main]
+  pull_request:
+    types: [assigned, edited, opened, reopened, synchronize]
 
 jobs:
   mocha:
