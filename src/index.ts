@@ -10,10 +10,10 @@
  * @property {any} [0] - The value returned by the callback or fallback
  * @property {unknown} [1] - The error thrown by the callback
  */
-export type TcResult<X = unknown, IsAsync extends boolean = false> =
-  IsAsync extends true
-    ? Promise<[X?, unknown?]>
-    : [X?, unknown?]
+export type TcResult<
+  X = unknown,
+  IsAsync extends boolean = false
+> = IsAsync extends true ? Promise<[X?, unknown?]> : [X?, unknown?]
 
 /**
  * Execute a callback within a `try...catch` statement,
@@ -52,7 +52,7 @@ export type TcResult<X = unknown, IsAsync extends boolean = false> =
  *     tc(() => { throw new Error() }, e => console.error(e)) // Error
  *
  *
- *    // Fallback values
+ *     // Fallback values
  *
  *     const [x] = tc(() => true, e => false)
  *     console.info(x) // true
@@ -67,18 +67,19 @@ export function tc<X = unknown, IsAsync extends boolean = false>(
   try {
     const x = cb()
     return x instanceof Promise
-      ? new Promise<[X?, unknown?]>(async resolve => {
-        try { resolve([await x]) }
-        catch (e: unknown) {
-          resolve([
-            await (fb?.(e) as Promise<X | undefined>), e
-          ] as unknown as TcResult<X, IsAsync>)
-        }
-      }) as TcResult<X, IsAsync>
-      : [x] as unknown as TcResult<X, IsAsync>
-  }
-  catch (e: unknown) {
-    return [fb?.(e), e] as unknown as TcResult<X, IsAsync>
+      ? (new Promise<[X?, unknown?]>(async resolve => {
+          try {
+            resolve([await x])
+          } catch (e: unknown) {
+            resolve(([
+              await (fb?.(e) as Promise<X | undefined>),
+              e
+            ] as unknown) as TcResult<X, IsAsync>)
+          }
+        }) as TcResult<X, IsAsync>)
+      : (([x] as unknown) as TcResult<X, IsAsync>)
+  } catch (e: unknown) {
+    return ([fb?.(e), e] as unknown) as TcResult<X, IsAsync>
   }
 }
 

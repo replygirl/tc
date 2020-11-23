@@ -1,0 +1,6 @@
+{
+  "prettier.configPath": ".prettierrc",
+  "typescript.format.enable": false,
+  "javascript.format.enable": false,
+  "prettier.enable": true
+}
