@@ -72,4 +72,4 @@ console.info(z ?? ze) // true
 
 ## Footnotes
 
-<sup>1</sup> I'm welcome to contributions that let `tc` infer the callback's return types!
+<sup>1</sup> I'm very open to contributions that let `tc` infer the callback's return types
