@@ -1,6 +1,6 @@
 # `tc`
 
-destructurable, async-friendly `try...catch` wrapper
+destructurable, async-friendly `try...catch` wrapper function
 
 ## Installation
 

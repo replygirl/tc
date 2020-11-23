@@ -1,7 +1,7 @@
 {
   "name": "@replygirl/tc",
   "version": "0.0.0",
-  "description": "destructurable, async-friendly `try...catch` wrapper",
+  "description": "destructurable, async-friendly `try...catch` wrapper function",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -13,7 +13,23 @@
     "type": "git",
     "url": "https://github.com/replygirl/tc.git"
   },
-  "keywords": [],
+  "keywords": [
+    "async",
+    "await",
+    "awaitable",
+    "promise",
+    "try",
+    "catch",
+    "wrapper",
+    "function",
+    "fallback",
+    "error handling",
+    "destructure",
+    "destructuring",
+    "functional",
+    "utility",
+    "helper"
+  ],
   "author": {
     "name": "replygirl",
     "email": "moon@moon.fyi"
