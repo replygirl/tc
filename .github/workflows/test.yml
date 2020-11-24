@@ -17,4 +17,4 @@ jobs:
       env:
         CC_TEST_REPORTER_ID: <code_climate_reporter_id>
       with:
-        coverageLocations: ${{github.workspace}}/coverage/*.lcov:lcov
+        coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
