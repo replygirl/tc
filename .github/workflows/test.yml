@@ -4,7 +4,7 @@ on:
     types: [edited, opened, reopened, synchronize]
 
 jobs:
-  mocha:
+  test-and-publish:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -16,3 +16,5 @@ jobs:
     - uses: paambaati/codeclimate-action@v2.7.4
       env:
         CC_TEST_REPORTER_ID: <code_climate_reporter_id>
+      with:
+        coverageLocations: ${{github.workspace}}/coverage/*.lcov:lcov
