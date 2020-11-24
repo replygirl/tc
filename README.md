@@ -1,4 +1,4 @@
-# `tc`
+# `tc` ![node-current (scoped)](https://img.shields.io/node/v/@replygirl/tc?style=flat-square) ![GitHub top language](https://img.shields.io/github/languages/top/replygirl/tc?style=flat-square) [![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@replygirl/tc?style=flat-square)](https://libraries.io/npm/@replygirl%2Ftc) ![Code Climate coverage](https://img.shields.io/codeclimate/coverage/replygirl/tc?style=flat-square) [![GitHub issues](https://img.shields.io/github/issues/replygirl/tc?style=flat-square)](https://github.com/replygirl/tc/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/replygirl/tc?style=flat-square)](https://github.com/replygirl/tc/pulls)
 
 destructurable, async-friendly `try...catch` wrapper function with support for error side effects and fallback values
 
