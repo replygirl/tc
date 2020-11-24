@@ -1,10 +1,10 @@
-name: Test
+name: Test & publish coverage
 on:
   pull_request:
     types: [edited, opened, reopened, synchronize]
 
 jobs:
-  mocha:
+  test-and-publish-coverage:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -13,3 +13,8 @@ jobs:
         node-version: '12.x'
     - run: yarn install
     - run: yarn test
+    - uses: paambaati/codeclimate-action@v2.7.4
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov

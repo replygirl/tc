@@ -1,5 +1,5 @@
 {
-  "prettier.configPath": ".prettierrc",
+  "prettier.configPath": ".prettierrc.json",
   "typescript.format.enable": false,
   "javascript.format.enable": false,
   "prettier.enable": true
