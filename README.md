@@ -74,7 +74,3 @@ console.info(z ?? ze) // true
 ## License
 
 [ISC (c) 2020 replygirl](https://github.com/replygirl/tc/blob/main/LICENSE.md)
-
-## Footnotes
-
-<sup>1</sup> I'm very open to contributions that let `tc` infer the callback's return types
