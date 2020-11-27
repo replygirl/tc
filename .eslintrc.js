@@ -12,7 +12,10 @@ module.exports = {
       'es2020.string',
       'es2020.symbol.wellknown'
     ],
-    project: './tsconfig.json'
+    project: {
+      extends: './tsconfig.json',
+      include: ['src/**/*.ts']
+    }
   },
   plugins: ['@typescript-eslint'],
   extends: [
@@ -21,5 +24,7 @@ module.exports = {
     'prettier',
     'prettier/@typescript-eslint'
   ],
-  complexity: ['error', { max: 2 }]
+  rules: {
+    complexity: ['error', { max: 3 }]
+  }
 }
