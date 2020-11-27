@@ -17,21 +17,21 @@ yarn add @replygirl/tc
 ```ts
 import tc from '@replygirl/tc'
 
-const [x, xe] = tc(() => true)
-console.info(x ?? xe) // true
+const [x] = tc(() => true)
+console.info(x) // true
 
-const [y, ye] = tc(() => { throw new Error() })
-console.info(y ?? ye) // Error
+const [y, e] = tc(() => { throw new Error() })
+console.info(y ?? e) // Error
 ```
 
 #### With `async`/`await`
 
 ```ts
-const [x, xe] = await tc(async () => true)
-console.info(x ?? xe) // true
+const [x] = await tc(async () => true)
+console.info(x) // true
 
-const [y, ye] = await tc(async () => { throw new Error() })
-console.info(y ?? ye) // Error
+const [y, e] = await tc(async () => { throw new Error() })
+console.info(y ?? e) // Error
 ```
 
 ### Custom error handling
@@ -53,14 +53,14 @@ console.info(y) // false
 ### TypeScript
 
 ```ts
-const [x, xe] = tc<boolean>(() => true)
-console.info(x ?? xe) // true
+const [x] = tc<boolean>(() => true)
+console.info(x) // true
 
-const [y, ye] = tc<boolean>(() => { throw new Error() })
-console.info(y ?? ye) // Error
+const [y, e] = tc<boolean>(() => { throw new Error() })
+console.info(y ?? e) // Error
 
-const [z, ze] = await tc<boolean>(async () => true)
-console.info(z ?? ze) // true
+const [z] = await tc<boolean>(async () => true)
+console.info(z) // true
 ```
 
 ## Changes from 1.x
