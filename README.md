@@ -63,6 +63,14 @@ const [z, ze] = await tc<boolean>(async () => true)
 console.info(z ?? ze) // true
 ```
 
+## Changes from 1.x
+
+- **Breaking:** The `IsAsync` type argument is no longer required
+- **Breaking:** The `TcResult` type has been simplified to `[T?, unknown?]`
+- Synchronous & async handlers can be mixed & matched
+- Native ES2019 (compiled from ES2021)
+- Zero-install Yarn 2
+
 ## License
 
 [ISC (c) 2020 replygirl](https://github.com/replygirl/tc/blob/main/LICENSE.md)
