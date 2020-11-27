@@ -6,18 +6,14 @@ const eq = (a: any, b: any) => () => assert.deepStrictEqual(a, b)
 
 describe('tc', async () => {
   it(
-    'should return [x] when cb returns x',
+    'should return [x] when sync cb returns x',
     eq(
-      tc<true>(() => true),
+      tc<boolean>(() => true),
       [true]
     )
   )
   it(
-    'should return Promise<[x]> when async cb returns x',
-    eq(await tc<true, true>(async () => true), [true])
-  )
-  it(
-    'should return [undefined, e] when cb throws w/o fallback',
+    'should return [undefined, e] when sync cb throws w/o fallback',
     eq(
       tc<any>(() => {
         throw new Error()
@@ -26,18 +22,9 @@ describe('tc', async () => {
     )
   )
   it(
-    'should return [undefined, e] when async cb throws w/o fallback',
+    'should return [fb, e] when sync cb throws w/ sync fallback',
     eq(
-      await tc<any, true>(async () => {
-        throw new Error()
-      }),
-      [undefined, new Error()]
-    )
-  )
-  it(
-    'should return [fb, e] when cb throws w/ fallback',
-    eq(
-      tc<true>(
+      tc<boolean>(
         () => {
           throw new Error()
         },
@@ -47,9 +34,46 @@ describe('tc', async () => {
     )
   )
   it(
-    'should return Promise<[fb, e]> when async cb throws w/ fallback',
+    'should return [Promise<fb>, e] when sync cb throws w/ async fallback',
     eq(
-      await tc<true, true>(
+      tc<boolean>(
+        () => {
+          throw new Error()
+        },
+        async () => true
+      ),
+      [(async () => true)(), new Error()]
+    )
+  )
+  it(
+    'should return Promise<[x]> when async cb returns x',
+    eq(await tc<boolean>(async () => true), [true])
+  )
+  it(
+    'should return [undefined, e] when async cb throws w/o fallback',
+    eq(
+      await tc<boolean>(async () => {
+        throw new Error()
+      }),
+      [undefined, new Error()]
+    )
+  )
+  it(
+    'should return Promise<[fb, e]> when async cb throws w/ sync fallback',
+    eq(
+      await tc<boolean>(
+        async () => {
+          throw new Error()
+        },
+        () => true
+      ),
+      [true, new Error()]
+    )
+  )
+  it(
+    'should return Promise<[fb, e]> when async cb throws w/ async fallback',
+    eq(
+      await tc<boolean>(
         async () => {
           throw new Error()
         },

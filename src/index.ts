@@ -1,19 +1,19 @@
-/**
- * @callback errorHandler
- * @param {unknown} e - An error
- * @return {any}
- */
+export type MaybePromise<T> = T | Promise<T>
 
 /**
- * @typedef returnArray
+ * @callback tcErrorHandler
+ * @param {unknown} e - An error
+ * @return {*}
+ */
+export type TcErrorHandler<T> = (e: unknown) => MaybePromise<T> | void
+
+/**
+ * @typedef tcResult
  * @type {array}
  * @property {any} [0] - The value returned by the callback or fallback
  * @property {unknown} [1] - The error thrown by the callback
  */
-export type TcResult<
-  X = unknown,
-  IsAsync extends boolean = false
-> = IsAsync extends true ? Promise<[X?, unknown?]> : [X?, unknown?]
+export type TcResult<T> = [T?, unknown?]
 
 /**
  * Execute a callback within a `try...catch` statement,
@@ -25,7 +25,7 @@ export type TcResult<
  *     Error handler called from `catch`;
  *     may optionally return a fallback value
  *
- * @returns {returnArray} [value, error]
+ * @returns {tcResult} [value, error]
  *
  * @example
  *
@@ -60,26 +60,24 @@ export type TcResult<
  *     const [y] = tc(() => { throw new Error() }, e => false)
  *     console.info(y) // false
  */
-export function tc<X = unknown, IsAsync extends boolean = false>(
-  cb: () => IsAsync extends true ? Promise<X> : X,
-  fb?: (e: unknown) => IsAsync extends true ? Promise<X> : X
-): TcResult<X, IsAsync> {
+export function tc<T = unknown>(
+  cb: () => MaybePromise<T>,
+  fb?: (e: unknown) => MaybePromise<T> | MaybePromise<void>
+): MaybePromise<TcResult<T>> {
   try {
     const x = cb()
     return x instanceof Promise
-      ? (new Promise<[X?, unknown?]>(async resolve => {
+      ? (async (): Promise<TcResult<T>> => {
           try {
-            resolve([await x])
+            return [await x]
           } catch (e: unknown) {
-            resolve(([
-              await (fb?.(e) as Promise<X | undefined>),
-              e
-            ] as unknown) as TcResult<X, IsAsync>)
+            const y = await fb?.(e)
+            return [y === void 0 ? undefined : y, e]
           }
-        }) as TcResult<X, IsAsync>)
-      : (([x] as unknown) as TcResult<X, IsAsync>)
+        })()
+      : [x]
   } catch (e: unknown) {
-    return ([fb?.(e), e] as unknown) as TcResult<X, IsAsync>
+    return [fb?.(e) as T, e]
   }
 }
 
