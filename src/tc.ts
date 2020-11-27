@@ -1,5 +1,5 @@
 import devoid from './utils/devoid'
-import processPromise from './utils/process-promise'
+import t from './utils/t'
 
 import type {
   TcCallback,
@@ -57,7 +57,7 @@ export default function <T = unknown>(
   fb?: TcErrorHandler<T>
 ): TcReturn<T> {
   try {
-    return processPromise<T>(cb(), fb)
+    return t<T>(cb(), fb)
   } catch (e: unknown) {
     return [devoid<T>(fb?.(e)), e]
   }

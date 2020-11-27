@@ -1,14 +1,12 @@
 import devoid from './devoid'
-import tryToAwait from './try-to-await'
+import tca from './tca'
 
-import type { MaybePromise } from '../index.types'
 import type { TcErrorHandler, TcReturn } from '../tc.types'
+import type { MaybePromise } from '../index.types'
 
 export default function <T>(
   x: MaybePromise<T>,
   fb?: TcErrorHandler<T>
 ): TcReturn<T> {
-  return x instanceof Promise
-    ? tryToAwait<T>(x, fb)
-    : [devoid(x)]
+  return x instanceof Promise ? tca<T>(x, fb) : [devoid(x)]
 }
