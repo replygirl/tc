@@ -52,21 +52,24 @@ console.info(y) // false
 
 ### TypeScript
 
-`tc` accepts the following type parameters:
-
-- `X`: Return type of the callback (and error handler, if it returns a fallback value)
-- `IsAsync` (optional `boolean`, default: `false`): Whether the callback and error handler return a `Promise`.<sup>1</sup>
-
 ```ts
-const [x, xe] = tc<true>(() => true)
+const [x, xe] = tc<boolean>(() => true)
 console.info(x ?? xe) // true
 
-const [y, ye] = tc<true>(() => { throw new Error() })
+const [y, ye] = tc<boolean>(() => { throw new Error() })
 console.info(y ?? ye) // Error
 
-const [z, ze] = await tc<true, true>(async () => true)
+const [z, ze] = await tc<boolean>(async () => true)
 console.info(z ?? ze) // true
 ```
+
+## Changes from 1.x
+
+- **Breaking:** The `IsAsync` type argument is no longer required
+- **Breaking:** The `TcResult` type has been simplified to `[T?, unknown?]`
+- Synchronous & async handlers can be mixed & matched
+- Native ES2019 (compiled from ES2021)
+- Zero-install Yarn 2
 
 ## License
 
