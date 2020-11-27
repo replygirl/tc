@@ -67,6 +67,9 @@
     "extension": [
       ".ts"
     ],
+    "include": [
+      "src"
+    ],
     "exclude": [
       "**/*.d.ts"
     ],
