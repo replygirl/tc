@@ -1,13 +1,10 @@
 import { deepStrictEqual as eq } from 'assert'
 
-import processPromise from './process-promise'
+import t from './t'
 
 import type { Suite } from 'mocha'
 
-const createSuite = (
-  name: string,
-  fn: typeof processPromise
-): Suite =>
+const createSuite = (name: string, fn: typeof t): Suite =>
   describe(name, () => {
     it('when x is void, returns [undefined]', () =>
       eq(fn<void>(void 0), [undefined]))
@@ -71,6 +68,6 @@ const createSuite = (
       ))
   })
 
-createSuite('utils/processPromise', processPromise)
+createSuite('utils/t', t)
 
 export default createSuite

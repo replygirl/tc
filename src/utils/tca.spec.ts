@@ -1,13 +1,10 @@
 import { deepStrictEqual as eq } from 'assert'
 
-import tryToAwait from './try-to-await'
+import tca from './tca'
 
 import type { Suite } from 'mocha'
 
-const createSuite = (
-  name: string,
-  fn: typeof tryToAwait
-): Suite =>
+const createSuite = (name: string, fn: typeof tca): Suite =>
   describe(name, () => {
     it('when x is Promise<void>, returns Promise<[undefined]>', async () =>
       eq(await fn<void>(new Promise(r => r())), [undefined]))
@@ -67,6 +64,6 @@ const createSuite = (
       ))
   })
 
-createSuite('utils/tryToAwait', tryToAwait)
+createSuite('utils/tca', tca)
 
 export default createSuite

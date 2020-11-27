@@ -6,3 +6,4 @@ exclude_patterns:
 - "coverage/"
 - "dist/"
 - "**/*.spec.ts"
+- "src/index.ts"
