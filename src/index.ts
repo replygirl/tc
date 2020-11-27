@@ -1,31 +1,59 @@
 export type MaybePromise<T> = T | Promise<T>
 
 /**
- * @callback tcErrorHandler
+ * @callback TcCallback
+ * @return {*}
+ */
+export type TcCallback<T> = () => MaybePromise<T>
+
+/**
+ * @callback TcErrorHandler
  * @param {unknown} e - An error
  * @return {*}
  */
-export type TcErrorHandler<T> = (e: unknown) => MaybePromise<T> | void
+export type TcErrorHandler<T> = (
+  e: unknown
+) => MaybePromise<T> | MaybePromise<void>
 
 /**
- * @typedef tcResult
+ * @typedef TcResult
  * @type {array}
  * @property {any} [0] - The value returned by the callback or fallback
  * @property {unknown} [1] - The error thrown by the callback
  */
 export type TcResult<T> = [T?, unknown?]
 
+export type TcReturn<T> = MaybePromise<TcResult<T>>
+
+const devoid = (x?: any | void): any => (x === void 0 ? undefined : x)
+
+const processPromise = <T>(
+  x: MaybePromise<T>,
+  fb?: TcErrorHandler<T>
+): TcReturn<T> => (x instanceof Promise ? tryToAwait<T>(x, fb) : [x])
+
+const tryToAwait = async <T = unknown>(
+  x: MaybePromise<T>,
+  fb?: TcErrorHandler<T>
+): Promise<TcResult<T>> => {
+  try {
+    return [await x]
+  } catch (e: unknown) {
+    return [devoid(await fb?.(e)), e]
+  }
+}
+
 /**
  * Execute a callback within a `try...catch` statement,
  * returning its return value and any errors
  *
- * @param {function} cb - Function attempted in `try`
+ * @param {TcCallback} cb - Function attempted in `try`
  *
- * @param {errorHandler} [fb]
+ * @param {TcErrorHandler} [fb]
  *     Error handler called from `catch`;
  *     may optionally return a fallback value
  *
- * @returns {tcResult} [value, error]
+ * @returns {TcReturn} [value, error]
  *
  * @example
  *
@@ -61,23 +89,13 @@ export type TcResult<T> = [T?, unknown?]
  *     console.info(y) // false
  */
 export function tc<T = unknown>(
-  cb: () => MaybePromise<T>,
-  fb?: (e: unknown) => MaybePromise<T> | MaybePromise<void>
-): MaybePromise<TcResult<T>> {
+  cb: TcCallback<T>,
+  fb?: TcErrorHandler<T>
+): TcReturn<T> {
   try {
-    const x = cb()
-    return x instanceof Promise
-      ? (async (): Promise<TcResult<T>> => {
-          try {
-            return [await x]
-          } catch (e: unknown) {
-            const y = await fb?.(e)
-            return [y === void 0 ? undefined : y, e]
-          }
-        })()
-      : [x]
+    return processPromise<T>(cb())
   } catch (e: unknown) {
-    return [fb?.(e) as T, e]
+    return [devoid(fb?.(e)), e]
   }
 }
 
