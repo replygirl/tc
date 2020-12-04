@@ -14,9 +14,12 @@ describe('tc', () => {
     ))
   it('when cb throws w/ fallback, returns Promise<[fb, e]>', async () =>
     eq(
-      await tc(async () => {
-        throw new Error()
-      }),
+      await tc(
+        async () => {
+          throw new Error()
+        },
+        async () => true
+      ),
       [true, new Error()]
     ))
 })
