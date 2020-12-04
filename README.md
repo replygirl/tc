@@ -39,7 +39,7 @@ console.info(y ?? e) // Error
 ### Custom error handling
 
 ```ts
-tc(
+await tc(
   async() => { throw new Error() },
   async e => console.error(e)
 ) // Error
@@ -48,7 +48,7 @@ tc(
 #### Returning fallback values in error handlers
 
 ```ts
-const [y] = tc(
+const [y] = await tc(
   async () => { throw new Error() },
   async e => false
 )
