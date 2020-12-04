@@ -1,23 +1,63 @@
-import devoid from './utils/devoid'
-import t from './utils/t'
-
-import type {
-  TcCallback,
-  TcErrorHandler,
-  TcReturn
-} from './tc.types'
+export type TcResult<T = unknown> = [T?, unknown?]
 
 /**
  * Execute a callback within a `try...catch` statement,
  * returning its return value and any errors
  *
- * @param {TcCallback} cb - Function attempted in `try`
+ * @param cb Function attempted in `try`
  *
- * @param {TcErrorHandler} [fb]
+ * @param fb
  *     Error handler called from `catch`;
  *     may optionally return a fallback value
  *
- * @returns {TcReturn} [value, error]
+ * @returns Promise<[value, error]>
+ *
+ * @example
+ *
+ *     // Basic usage
+ *
+ *     const [x] = await tc(async () => true)
+ *     console.info(x) // true
+ *
+ *
+ *     // Error handling
+ *
+ *     tc(
+ *       () => { throw new Error() },
+ *       e => console.error(e)
+ *     ) // Error
+ *
+ *
+ *     // Fallback values
+ *
+ *     const [y] = tc(
+ *       async () => { throw new Error() },
+ *       async e => false
+ *     )
+ *     console.info(y) // false
+ */
+export async function tc <T = unknown, U = T>(
+  cb: () => Promise<T>,
+  fb?: (e?: unknown) => Promise<U>
+): Promise<[(T | U)?, unknown?]> {
+  try {
+    return [await cb()]
+  } catch (e: unknown) {
+    return [await fb?.(e), e]
+  }
+}
+
+/**
+ * Execute a callback within a `try...catch` statement,
+ * returning its return value and any errors
+ *
+ * @param cb Function attempted in `try`
+ *
+ * @param fb
+ *     Error handler called from `catch`;
+ *     may optionally return a fallback value
+ *
+ * @returns [value, error]
  *
  * @example
  *
@@ -30,35 +70,30 @@ import type {
  *     console.info(y ?? ye) // Error
  *
  *
- *     // With async functions
- *
- *     const [x, xe] = await tc(async () => true)
- *     console.info(x ?? xe) // true
- *
- *     const [y, ye] = await tc(async () => { throw new Error() })
- *     console.info(y ?? ye) // Error
- *
- *
  *     // Error handling
  *
- *     tc(() => { throw new Error() }, e => console.error(e)) // Error
- *
+ *     tc(
+ *       async () => { throw new Error() },
+ *       e => console.error(e)
+ *     ) // Error
  *
  *     // Fallback values
  *
- *     const [x] = tc(() => true, e => false)
- *     console.info(x) // true
- *
- *     const [y] = tc(() => { throw new Error() }, e => false)
+ *     const [y] = tc(
+ *       async () => { throw new Error() },
+ *       e => false
+ *     )
  *     console.info(y) // false
  */
-export default function <T = unknown>(
-  cb: TcCallback<T>,
-  fb?: TcErrorHandler<T>
-): TcReturn<T> {
+export function tcs <T = unknown, U = T>(
+  cb: () => T,
+  fb?: (e?: unknown) => U
+): [(T | U)?, unknown?] {
   try {
-    return t<T>(cb(), fb)
+    return [cb()]
   } catch (e: unknown) {
-    return [devoid<T>(fb?.(e)), e]
+    return [fb?.(e), e]
   }
 }
+
+export default tc
