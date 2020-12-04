@@ -1,6 +1,6 @@
 import { deepStrictEqual as eq } from 'assert'
 
-import tc, { tcs } from './tc'
+import tc, { tcs } from '.'
 
 describe('tc', () => {
   it('when cb returns x, returns Promise<[x]>', async () =>
