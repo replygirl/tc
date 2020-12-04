@@ -31,7 +31,13 @@
     "preserveConstEnums": true,
     "suppressImplicitAnyIndexErrors": true,
     "forceConsistentCasingInFileNames": true,
-    "incremental": false
+    "incremental": false,
+    "baseUrl": "src",
+    "paths": {
+      "^/*": [
+        "./types/*"
+      ]
+    }
   },
   "include": ["src"],
   "exclude": [

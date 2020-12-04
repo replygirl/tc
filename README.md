@@ -12,10 +12,22 @@ yarn add @replygirl/tc
 
 ## Usage
 
-### The basics
+### Basic
 
 ```ts
 import tc from '@replygirl/tc'
+
+const [x] = await tc(async () => true)
+console.info(x) // true
+
+const [y, e] = await tc(async () => { throw new Error() })
+console.info(y ?? e) // Error
+```
+
+#### Sync variant: `tcs` (no Promises or async/await)
+
+```ts
+import { tc } from '@replygirl/tc'
 
 const [x] = tc(() => true)
 console.info(x) // true
@@ -24,58 +36,40 @@ const [y, e] = tc(() => { throw new Error() })
 console.info(y ?? e) // Error
 ```
 
-#### With `async`/`await`
-
-```ts
-const [x] = await tc(async () => true)
-console.info(x) // true
-
-const [y, e] = await tc(async () => { throw new Error() })
-console.info(y ?? e) // Error
-```
-
 ### Custom error handling
 
 ```ts
-tc(() => { throw new Error() }, e => console.error(e)) // Error
+await tc(
+  async() => { throw new Error() },
+  async e => console.error(e)
+) // Error
 ```
 
 #### Returning fallback values in error handlers
 
 ```ts
-const [x] = tc(() => true, e => false)
-console.info(x) // true
-
-const [y] = tc(() => { throw new Error() }, e => false)
+const [y] = await tc(
+  async () => { throw new Error() },
+  async e => false
+)
 console.info(y) // false
 ```
 
 ### TypeScript
 
+If you need to override the inferred return type of your callback or error handler (let's say your error handler returns `void` instead of matching your callback), `tc` and `tcs` both accept `T` and `U` parameters that represent the unwrapped values of each:
+
 ```ts
-const [x] = tc<boolean>(() => true)
-console.info(x) // true
+declare function tc <T = unknown, U = T>(
+  cb: () => Promise<T>,
+  fb?: (e?: unknown) => Promise<U>
+): Promise<[(T | U)?, unknown?]>
 
-const [y, e] = tc<boolean>(() => { throw new Error() })
-console.info(y ?? e) // Error
-
-const [z] = await tc<boolean>(async () => true)
-console.info(z) // true
+declare function tcs <T = unknown, U = T>(
+  cb: () => T,
+  fb?: (e?: unknown) => U
+): [(T | U)?, unknown?]
 ```
-
-## Changes from 1.x
-
-- **Breaking:** The `IsAsync` type argument is no longer required
-- **Breaking for some TypeScript cases:** For flexibility between sync & async, `tc<T>` will now return a `TcReturn<T>`, which breaks out like this:
-  ```ts
-  type TcResult<T = unknown> = [MaybePromise<Devoided<T>>, unknown?]
-  type TcReturn<T = unknown> = MaybePromise<TcResult<T>>
-  type MaybePromise<T = unknown> = T | Promise<T>
-  type Devoided<T = unknown> = T | undefined
-  ```
-- Synchronous & async handlers can be mixed & matched
-- Native ES2019 (compiled from ES2021)
-- Zero-install Yarn 2
 
 ## License
 
