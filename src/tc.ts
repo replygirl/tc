@@ -1,5 +1,3 @@
-export type TcResult<T = unknown> = [T?, unknown?]
-
 /**
  * Execute a callback within a `try...catch` statement,
  * returning its return value and any errors
