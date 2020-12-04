@@ -19,24 +19,27 @@ export type TcResult<T = unknown> = [T?, unknown?]
  *     const [x] = await tc(async () => true)
  *     console.info(x) // true
  *
+ *     const [y, e] = await tc(async () => { throw new Error() })
+ *     console.info(y ?? e) // Error
+ *
  *
  *     // Error handling
  *
- *     tc(
- *       () => { throw new Error() },
- *       e => console.error(e)
+ *     await tc(
+ *       async () => { throw new Error() },
+ *       async e => console.error(e)
  *     ) // Error
  *
  *
  *     // Fallback values
  *
- *     const [y] = tc(
+ *     const [y] = await tc(
  *       async () => { throw new Error() },
  *       async e => false
  *     )
  *     console.info(y) // false
  */
-export async function tc <T = unknown, U = T>(
+export async function tc<T = unknown, U = T>(
   cb: () => Promise<T>,
   fb?: (e?: unknown) => Promise<U>
 ): Promise<[(T | U)?, unknown?]> {
@@ -63,29 +66,30 @@ export async function tc <T = unknown, U = T>(
  *
  *     // Basic usage
  *
- *     const [x, xe] = tc(() => true)
+ *     const [x] = tcs(() => true)
  *     console.info(x ?? xe) // true
  *
- *     const [y, ye] = tc(() => { throw new Error() })
+ *     const [y, ye] = tcs(() => { throw new Error() })
  *     console.info(y ?? ye) // Error
  *
  *
  *     // Error handling
  *
  *     tc(
- *       async () => { throw new Error() },
+ *       () => { throw new Error() },
  *       e => console.error(e)
  *     ) // Error
+ *
  *
  *     // Fallback values
  *
  *     const [y] = tc(
- *       async () => { throw new Error() },
+ *       () => { throw new Error() },
  *       e => false
  *     )
  *     console.info(y) // false
  */
-export function tcs <T = unknown, U = T>(
+export function tcs<T = unknown, U = T>(
   cb: () => T,
   fb?: (e?: unknown) => U
 ): [(T | U)?, unknown?] {
