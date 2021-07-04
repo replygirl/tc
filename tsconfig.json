@@ -46,6 +46,7 @@
     "coverage",
     "dist",
     "node_modules",
+    "**/*.browser.ts",
     "**/*.spec.ts"
   ]
 }

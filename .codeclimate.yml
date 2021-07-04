@@ -1,8 +1,11 @@
 exclude_patterns:
-- ".eslintrc.js"
+- ".github/"
 - ".nyc_output/"
-- ".pnp.js"
+- ".vscode/"
 - ".yarn/"
 - "coverage/"
 - "dist/"
+- ".pnp.js"
+- "rollup.config.*"
+- "**/*.browser.ts"
 - "**/*.spec.ts"
