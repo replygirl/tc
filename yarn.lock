@@ -1635,13 +1635,11 @@ __metadata:
     mocha: ^9.0.2
     nyc: ^15.1.0
     prettier: ^2.3.2
-    recast: ^0.20.4
     rollup: ^2.52.7
     rollup-plugin-terser: ^7.0.2
     source-map-support: ^0.5.19
     ts-mocha: next
     ts-node: ^10.0.0
-    type-fest: ^1.2.1
     typescript: ^4.3.5
   dependenciesMeta:
     mocha@9.0.2:
@@ -2221,15 +2219,6 @@ __metadata:
   version: 1.0.0
   resolution: "assert-plus@npm:1.0.0"
   checksum: 1bda24f67343ccb75a7eee31179c92cf9f79bd6f6bc24101b0ce1495ef979376dd9b0f9b9064812bba564cdade5fbf851ed76b4a44b5e141d49cdaee6ffed6b2
-  languageName: node
-  linkType: hard
-
-"ast-types@npm:0.14.2":
-  version: 0.14.2
-  resolution: "ast-types@npm:0.14.2"
-  dependencies:
-    tslib: ^2.0.1
-  checksum: 42bb8a72ce90e3cf726220f93f772ff136aa857d99c1cb6b1fb2bdfa9369b15de54cd9d1ed17ba903a5ef82081676704b93f03eccd1335d7c71da3c5dac88109
   languageName: node
   linkType: hard
 
@@ -3353,7 +3342,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esprima@npm:^4.0.0, esprima@npm:~4.0.0":
+"esprima@npm:^4.0.0":
   version: 4.0.1
   resolution: "esprima@npm:4.0.1"
   bin:
@@ -5328,18 +5317,6 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"recast@npm:^0.20.4":
-  version: 0.20.4
-  resolution: "recast@npm:0.20.4"
-  dependencies:
-    ast-types: 0.14.2
-    esprima: ~4.0.0
-    source-map: ~0.6.1
-    tslib: ^2.0.1
-  checksum: a0edbb8860a15038e1b37f1d07c8709ff1c10aec82c0a7eeca3fc66b84cbcf2f15d7dbc9bb3781784a0a761298e1141a36f2fce0ea8f5b131d7859af2d1419e6
-  languageName: node
-  linkType: hard
-
 "regenerate-unicode-properties@npm:^8.2.0":
   version: 8.2.0
   resolution: "regenerate-unicode-properties@npm:8.2.0"
@@ -5732,7 +5709,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"source-map@npm:^0.6.0, source-map@npm:^0.6.1, source-map@npm:~0.6.1":
+"source-map@npm:^0.6.0, source-map@npm:^0.6.1":
   version: 0.6.1
   resolution: "source-map@npm:0.6.1"
   checksum: 8647829a0611724114022be455ca1c8a2c8ae61df81c5b3667d9b398207226a1e21174fb7bbf0b4dbeb27ac358222afb5a14f1c74a62a62b8883b012e5eb1270
@@ -6140,13 +6117,6 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.1":
-  version: 2.3.0
-  resolution: "tslib@npm:2.3.0"
-  checksum: 7b4fc9feff0f704743c3760f5d8d708f6417fac6458159e63df3a6b1100f0736e3b99edb9fe370f274ad15160a1f49ff05cb49402534c818ff552c48e38c3e6e
-  languageName: node
-  linkType: hard
-
 "tsutils@npm:^3.21.0":
   version: 3.21.0
   resolution: "tsutils@npm:3.21.0"
@@ -6201,13 +6171,6 @@ fsevents@~2.3.2:
   version: 0.8.1
   resolution: "type-fest@npm:0.8.1"
   checksum: f8c4b4249f52e8bea7a4fc55b3653c96c2d547240e4c772e001d02b7cc38b8c3eb493ab9fbe985a76a203cd1aa7044776b728a71ba12bf36e7131f989597885b
-  languageName: node
-  linkType: hard
-
-"type-fest@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "type-fest@npm:1.2.1"
-  checksum: 03c56d304481db8498aca7a093cee5680080da36cd9cc59dc64679c3a296dd6b58b940963ee4ab93e91f02b9d6dec0c41efbb02d3672b4d3ccde5b64f5d3667b
   languageName: node
   linkType: hard
 
