@@ -5,4 +5,5 @@ exclude_patterns:
 - ".yarn/"
 - "coverage/"
 - "dist/"
+- "**/*.browser.ts"
 - "**/*.spec.ts"
