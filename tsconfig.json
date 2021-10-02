@@ -1,52 +1,26 @@
 {
+  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
-    "target": "es2019",
-    "module": "commonjs",
-    "lib": [
-      "es2019",
-      "es2020.bigint",
-      "es2020.string",
-      "es2020.symbol.wellknown"
-    ],
-    "declaration": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "removeComments": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
-    "rootDirs": ["./", "./src"],
-    "typeRoots": ["./types", "./@types", "node_modules/@types"],
-    "types": ["mocha", "node"],
-    "esModuleInterop": true,
-    "preserveConstEnums": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "forceConsistentCasingInFileNames": true,
-    "incremental": false,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "^/*": [
-        "./types/*"
-      ]
-    }
+      "~/*": ["./src/*"],
+    },
+    "resolveJsonModule": true,
+    "rootDirs": [".", "./src"],
+    "declaration": true,
+    "declarationMap": true,
+    "newLine": "lf",
+    "outDir": "./dist",
+    "sourceMap": true,
   },
-  "include": ["src"],
-  "exclude": [
-    ".pnp.js",
-    ".yarn",
-    "coverage",
-    "dist",
-    "node_modules",
-    "**/*.browser.ts",
-    "**/*.spec.ts"
-  ]
 }

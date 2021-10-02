@@ -2,22 +2,6 @@
   "name": "@replygirl/tc",
   "version": "0.0.0",
   "description": "destructurable, async-friendly `try...catch` wrapper function with support for error side effects and fallback values",
-  "main": "dist/index.js",
-  "module": "dist/tc.esm.js",
-  "browser": "dist/tc.iife.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "lint": "eslint src",
-    "lint:fix": "yarn lint --fix",
-    "test": "nyc ts-mocha",
-    "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "rollup -c rollup.config.ts; rollup -c rollup.config.browser.ts",
-    "build": "yarn build:types; yarn build:js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/replygirl/tc.git"
-  },
   "keywords": [
     "async",
     "await",
@@ -35,69 +19,59 @@
     "utility",
     "helper"
   ],
+  "homepage": "https://github.com/replygirl/tc#readme",
+  "bugs": {
+    "url": "https://github.com/replygirl/tc/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/replygirl/tc.git"
+  },
+  "license": "ISC",
   "author": {
     "name": "replygirl",
     "email": "moon@moon.fyi"
   },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/replygirl/tc/issues"
-  },
-  "homepage": "https://github.com/replygirl/tc#readme",
-  "devDependencies": {
-    "@antfu/eslint-config-ts": "^0.6.6",
-    "@babel/core": "^7.14.6",
-    "@babel/preset-env": "^7.14.7",
-    "@babel/preset-typescript": "^7.14.5",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-commonjs": "^19.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.0",
-    "@rollup/plugin-typescript": "^8.2.1",
-    "@types/babel__core": "^7",
-    "@types/babel__preset-env": "^7",
-    "@types/eslint": "^7.2.13",
-    "@types/eslint-config-prettier": "^6.11.0",
-    "@types/eslint-plugin-prettier": "^3",
-    "@types/mocha": "^8.2.2",
-    "@types/node": "^16.0.0",
-    "@types/prettier": "^2.3.1",
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "@typescript-eslint/parser": "^4.28.1",
-    "eslint": "^7.30.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-node": "^0.3.4",
-    "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-html": "^6.1.2",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-jsonc": "^1.4.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-unicorn": "^34.0.1",
-    "eslint-plugin-yml": "^0.9.0",
-    "jsonc-eslint-parser": "^1.1.0",
-    "mocha": "^9.0.2",
-    "nyc": "^15.1.0",
-    "prettier": "^2.3.2",
-    "rollup": "^2.52.7",
-    "rollup-plugin-terser": "^7.0.2",
-    "source-map-support": "^0.5.19",
-    "ts-mocha": "next",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.3.5"
-  },
-  "engines": {
-    "node": ">=12.x"
-  },
+  "main": "dist/index.js",
+  "module": "dist/tc.esm.js",
+  "browser": "dist/tc.iife.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "docs/**/*.md"
   ],
+  "scripts": {
+    "build": "tsc --emitDeclarationOnly; rollup -c rollup.config.ts; rollup -c rollup.config.browser.ts",
+    "docs:build": "vitepress build docs",
+    "docs:dev": "vitepress dev docs --port 3003",
+    "docs:serve": "vitepress serve docs --port 3003",
+    "lint": "eslint src",
+    "lint:fix": "yarn lint --fix",
+    "test": "nyc ts-mocha"
+  },
+  "browserslist": "last 3 years and >0.2% in US, maintained node versions",
+  "prettier": {
+    "arrowParens": "avoid",
+    "bracketSpacing": true,
+    "embeddedLanguageFormatting": "off",
+    "endOfLine": "lf",
+    "insertPragma": false,
+    "printWidth": 80,
+    "proseWrap": "preserve",
+    "quoteProps": "as-needed",
+    "requirePragma": false,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
   "eslintConfig": {
     "plugins": [
       "prettier"
     ],
     "extends": [
-      "@antfu/eslint-config-ts",
+      "@antfu",
       "plugin:prettier/recommended"
     ],
     "rules": {
@@ -146,40 +120,73 @@
       "prettier/prettier": "error"
     }
   },
-  "prettier": {
-    "printWidth": 80,
-    "tabWidth": 2,
-    "useTabs": false,
-    "semi": false,
-    "singleQuote": true,
-    "quoteProps": "as-needed",
-    "trailingComma": "es5",
-    "bracketSpacing": true,
-    "arrowParens": "avoid",
-    "requirePragma": false,
-    "insertPragma": false,
-    "proseWrap": "preserve",
-    "endOfLine": "lf",
-    "embeddedLanguageFormatting": "off"
-  },
   "nyc": {
+    "all": true,
+    "exclude": [
+      "**/*.d.ts"
+    ],
     "extension": [
       ".ts"
     ],
     "include": [
       "src"
     ],
-    "exclude": [
-      "**/*.d.ts"
-    ],
     "reporter": [
       "lcov"
-    ],
-    "all": true
+    ]
+  },
+  "resolutions": {
+    "terser": "npm:@swc/core",
+    "ts-mocha@9.0.0-alpha1": "patch:ts-mocha@npm:9.0.0-alpha1#.yarn/patches/ts-mocha-npm-9.0.0-alpha1-8ab4bf2e7c"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.9.0",
+    "@rollup/plugin-commonjs": "^21.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "@swc/core": "^1.2.92",
+    "@tsconfig/node16": "^1.0.2",
+    "@types/eslint": "^7.28.0",
+    "@types/eslint-config-prettier": "^6.11.0",
+    "@types/eslint-plugin-prettier": "^3.1.0",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.10.2",
+    "@types/prettier": "^2.4.1",
+    "@vue/compiler-sfc": "^3.2.19",
+    "browserslist": "^4.17.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-node": "^0.3.6",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jsonc": "^1.7.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-unicorn": "^36.0.0",
+    "eslint-plugin-yml": "^0.10.1",
+    "jsonc-eslint-parser": "^1.4.1",
+    "mocha": "^9.1.2",
+    "nyc": "^15.1.0",
+    "prettier": "^2.4.1",
+    "rollup": "^2.58.0",
+    "rollup-plugin-swc": "^0.2.0",
+    "source-map-support": "^0.5.20",
+    "ts-mocha": "next",
+    "ts-node": "^10.2.1",
+    "type-fest": "^2.3.4",
+    "typescript": "^4.4.3",
+    "vitepress": "^0.19.2"
   },
   "dependenciesMeta": {
-    "mocha@9.0.2": {
+    "mocha": {
+      "unplugged": true
+    },
+    "vitepress": {
       "unplugged": true
     }
+  },
+  "engines": {
+    "node": ">=12.x"
   }
 }

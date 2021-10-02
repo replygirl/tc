@@ -1,6 +1,5 @@
-import babel from '@rollup/plugin-babel'
 import resolve from '@rollup/plugin-node-resolve'
-import { terser } from 'rollup-plugin-terser'
+import swc from 'rollup-plugin-swc'
 
 import pkg from './package.json'
 
@@ -14,10 +13,11 @@ export default {
 
   plugins: [
     resolve({ extensions }),
-    babel({
-      extensions,
-      babelHelpers: 'bundled',
-      include: ['src/**/*'],
+    swc({
+      env: {
+        coreJs: '3',
+      },
+      minify: true,
     }),
   ],
 
@@ -25,9 +25,8 @@ export default {
     {
       file: pkg.browser,
       format: 'iife',
-      name: 'Tc',
+      name: 'tc',
       exports: 'default',
-      plugins: [terser()],
 
       // https://rollupjs.org/guide/en/#outputglobals
       globals: {},
