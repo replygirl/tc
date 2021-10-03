@@ -34,6 +34,10 @@ module.exports = {
       {
         text: 'Types',
         link: '/types'
+      },
+      {
+        text: 'Migrating',
+        link: '/migrating'
       }
     ].map(x => ({ ...x, collapsable: false }))
   },

@@ -23,11 +23,11 @@
   --c-brand-light: #6F5E5C;
   --c-bg: #D0CD94;
 
-  --c-text: black;
+  --c-text: var(--c-black);
   --c-text-light: var(--c-brand);
   --c-text-lighter: var(--c-brand-light);
 
-  --code-bg-color: black;
+  --code-bg-color: var(--c-black);
 }
 
 .nav-bar-title {
@@ -36,4 +36,26 @@
 
 h1, .nav-link, .sidebar > .sidebar-links > .sidebar-link > a {
   font-family: 'Compagnon', var(--font-family-mono);
+}
+
+thead, tbody, tr {
+  border: 1px solid var(--c-black);
+
+}
+tr:nth-child(2n) {
+  background-color: transparent;
+}
+th, td {
+  border: none;
+}
+th {
+  background-color: var(--c-black);
+  border: none;
+  color: var(--c-bg);
+}
+th + th {
+  border-left: dotted 1px var(--c-bg);
+}
+td + td {
+  border-left: 1px solid var(--c-black);
 }
