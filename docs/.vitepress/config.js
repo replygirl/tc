@@ -25,19 +25,19 @@ module.exports = {
       },
       {
         text: 'Getting started',
-        link: '/getting-started'
+        link: '/getting-started.html'
       },
       {
         text: 'Features',
-        link: '/features'
+        link: '/features.html'
       },
       {
         text: 'Types',
-        link: '/types'
+        link: '/types.html'
       },
       {
         text: 'Migrating',
-        link: '/migrating'
+        link: '/migrating.html'
       }
     ].map(x => ({ ...x, collapsable: false }))
   },
