@@ -21,7 +21,7 @@ The unwrapped (awaited) return value of `tc` will always be an array of two item
 
 ## Overload signatures
 
-`tc` will determine its return value based on the return types of your `t` and `c` callbacks. You shouldn't need to pass in type arguments for accurate type checking.
+`tc` will determine its return type based on the return types of your `t` and `c` callbacks. You shouldn't need to pass in type arguments for accurate type checking.
 
 ```ts
 function tc<T = unknown, U = T>(
