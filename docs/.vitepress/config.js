@@ -5,6 +5,7 @@ module.exports = {
   themeConfig: {
     repo: 'replygirl/tc',
     docsDir: 'docs',
+    docsBranch: 'main',
 
     editLinks: true,
     editLinkText: 'Edit this page on GitHub',
