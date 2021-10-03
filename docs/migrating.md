@@ -14,7 +14,7 @@ Follow only the instructions for your current version of `tc`:
 
 - **Breaking:** `tc` and `tcs` have been merged back into one function, with `tc` automatically handling `Promise`s as with versions prior to 3.x.
   - **To fix:** Replace all instance of `tcs` with `tc`.
-- **Breaking:** `tc` is only provided as a const export, no longer a default export.
+- **Breaking:** `tc` is only provided as a default export, no longer a const export.
   - **To fix:** Replace `import { tc } from '@replygirl/tc'` with `import tc from '@replygirl/tc'`
 
 ### TypeScript
