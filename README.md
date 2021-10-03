@@ -4,73 +4,30 @@
 
 destructurable, async-friendly `try...catch` wrapper function with support for error side effects and fallback values
 
-## Installation
+## Installation & usage
 
-```bash
-yarn add @replygirl/tc
-```
-
-## Usage
-
-### Basic
+See the [docs](https://tc.replygirl.club) for full details.
 
 ```ts
 import tc from '@replygirl/tc'
 
-const [x] = await tc(async () => true)
-console.info(x) // true
+// get the return value and error of a try callback
+const [x, e] = tc(() => { /* ... */ })
 
-const [y, e] = await tc(async () => { throw new Error() })
-console.info(y ?? e) // Error
+// or put complex error handling in a catch callback
+const [y] = await tc(doSomething, async e => {
+  await reportError(e)
+  return getFallbackValue(e)
+})
+
+// reuse your error handling by defining your own wrapper
+const tce = (t, c) => tc(t, async e => {
+  await reportError(e)
+  return c(e)
+})
+const [z] = tce(doSomething, getFallbackValue)
 ```
 
-#### Sync variant: `tcs` (no Promises or async/await)
+---
 
-```ts
-import { tc } from '@replygirl/tc'
-
-const [x] = tc(() => true)
-console.info(x) // true
-
-const [y, e] = tc(() => { throw new Error() })
-console.info(y ?? e) // Error
-```
-
-### Custom error handling
-
-```ts
-await tc(
-  async() => { throw new Error() },
-  async e => console.error(e)
-) // Error
-```
-
-#### Returning fallback values in error handlers
-
-```ts
-const [y] = await tc(
-  async () => { throw new Error() },
-  async e => false
-)
-console.info(y) // false
-```
-
-### TypeScript
-
-If you need to override the inferred return type of your callback or error handler (let's say your error handler returns `void` instead of matching your callback), `tc` and `tcs` both accept `T` and `U` parameters that represent the unwrapped values of each:
-
-```ts
-declare function tc <T = unknown, U = T>(
-  cb: () => Promise<T>,
-  fb?: (e?: unknown) => Promise<U>
-): Promise<[(T | U)?, unknown?]>
-
-declare function tcs <T = unknown, U = T>(
-  cb: () => T,
-  fb?: (e?: unknown) => U
-): [(T | U)?, unknown?]
-```
-
-## License
-
-[ISC (c) 2020 replygirl](https://github.com/replygirl/tc/blob/main/LICENSE.md)
+[ISC License | Copyright © 2020–present replygirl](https://github.com/replygirl/tc/blob/main/LICENSE.md)

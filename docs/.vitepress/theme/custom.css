@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Basteleur';
+  src: url(/fonts/Basteleur-Bold.woff2);
+}
+
+@font-face {
+  font-family: 'Compagnon';
+  font-weight: bold;
+  src: url(/fonts/Compagnon-Bold.woff2);
+}
+
+:root {
+  /* https://github.com/vuejs/vitepress/blob/master/src/client/theme-default/styles/vars.css */
+
+  --font-family-base:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif;
+  --font-family-mono:
+    'IBM Plex Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+  --c-brand: #5F5449;
+  --c-brand-light: #6F5E5C;
+  --c-bg: #D0CD94;
+
+  --c-text: var(--c-black);
+  --c-text-light: var(--c-brand);
+  --c-text-lighter: var(--c-brand-light);
+
+  --code-bg-color: var(--c-black);
+}
+
+.nav-bar-title {
+  font-family: 'Basteleur', var(--font-family-base);
+}
+
+h1, .nav-link, .sidebar > .sidebar-links > .sidebar-link > a {
+  font-family: 'Compagnon', var(--font-family-mono);
+}
+
+thead, tbody, tr {
+  border: 1px solid var(--c-black);
+
+}
+tr:nth-child(2n) {
+  background-color: transparent;
+}
+th, td {
+  border: none;
+}
+th {
+  background-color: var(--c-black);
+  border: none;
+  color: var(--c-bg);
+}
+th + th {
+  border-left: dotted 1px var(--c-bg);
+}
+td + td {
+  border-left: 1px solid var(--c-black);
+}

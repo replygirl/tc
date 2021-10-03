@@ -1,100 +1,56 @@
-/**
- * Execute a callback within a `try...catch` statement,
- * returning its return value and any errors
- *
- * @param cb Function attempted in `try`
- *
- * @param fb
- *     Error handler called from `catch`;
- *     may optionally return a fallback value
- *
- * @returns Promise<[value, error]>
- *
- * @example
- *
- *     // Basic usage
- *
- *     const [x] = await tc(async () => true)
- *     console.info(x) // true
- *
- *     const [y, e] = await tc(async () => { throw new Error() })
- *     console.info(y ?? e) // Error
- *
- *
- *     // Error handling
- *
- *     await tc(
- *       async () => { throw new Error() },
- *       async e => console.error(e)
- *     ) // Error
- *
- *
- *     // Fallback values
- *
- *     const [y] = await tc(
- *       async () => { throw new Error() },
- *       async e => false
- *     )
- *     console.info(y) // false
- */
-export async function tc<T = unknown, U = T>(
-  cb: () => Promise<T>,
-  fb?: (e?: unknown) => Promise<U>
-): Promise<[(T | U)?, unknown?]> {
-  try {
-    return [await cb()]
-  } catch (e: unknown) {
-    return [await fb?.(e), e]
-  }
-}
+/* eslint-disable complexity */
+type MaybePromise<T> = Promise<T> | T
 
-/**
- * Execute a callback within a `try...catch` statement,
- * returning its return value and any errors
- *
- * @param cb Function attempted in `try`
- *
- * @param fb
- *     Error handler called from `catch`;
- *     may optionally return a fallback value
- *
- * @returns [value, error]
- *
- * @example
- *
- *     // Basic usage
- *
- *     const [x] = tcs(() => true)
- *     console.info(x ?? xe) // true
- *
- *     const [y, ye] = tcs(() => { throw new Error() })
- *     console.info(y ?? ye) // Error
- *
- *
- *     // Error handling
- *
- *     tc(
- *       () => { throw new Error() },
- *       e => console.error(e)
- *     ) // Error
- *
- *
- *     // Fallback values
- *
- *     const [y] = tc(
- *       () => { throw new Error() },
- *       e => false
- *     )
- *     console.info(y) // false
- */
-export function tcs<T = unknown, U = T>(
-  cb: () => T,
-  fb?: (e?: unknown) => U
-): [(T | U)?, unknown?] {
+function tc<T = unknown, U = T>(
+  t: () => T,
+  c?: (e: unknown) => U
+): [T, undefined] | [U | undefined, unknown]
+function tc<T = unknown, U = T>(
+  t: () => T,
+  c?: (e: unknown) => Promise<U>
+): [T, undefined] | Promise<[U | undefined, unknown]>
+function tc<T = unknown, U = T>(
+  t: () => Promise<T>,
+  c?: (e: unknown) => MaybePromise<U>
+): Promise<[T, undefined] | [U | undefined, unknown]>
+function tc<T = unknown, U = T>(
+  t: () => MaybePromise<T>,
+  c?: (e: unknown) => MaybePromise<U>
+): MaybePromise<[T, undefined] | [U | undefined, unknown]> {
   try {
-    return [cb()]
-  } catch (e: unknown) {
-    return [fb?.(e), e]
+    const tv = t()
+
+    return tv instanceof Promise
+      ? new Promise(resolve =>
+          tv
+            .then(x => resolve([x, undefined]))
+            .catch(e => {
+              try {
+                const cv = c?.(e)
+
+                if (cv instanceof Promise)
+                  cv.then(x => resolve([x, e])).catch(e =>
+                    resolve([undefined, e])
+                  )
+                else resolve([cv, e])
+              } catch (e) {
+                resolve([undefined, e])
+              }
+            })
+        )
+      : [tv, undefined]
+  } catch (e) {
+    try {
+      const cv = c?.(e)
+
+      return cv instanceof Promise
+        ? new Promise(resolve =>
+            cv.then(x => resolve([x, e])).catch(e => resolve([undefined, e]))
+          )
+        : [cv, e]
+    } catch (e) {
+      return [undefined, e]
+    }
   }
 }
 
