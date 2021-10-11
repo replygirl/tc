@@ -16,11 +16,15 @@
       "~/*": ["./src/*"],
     },
     "resolveJsonModule": true,
-    "rootDirs": [".", "./src"],
     "declaration": true,
-    "declarationMap": true,
     "newLine": "lf",
     "outDir": "./dist",
-    "sourceMap": true,
   },
+  "include": [
+    "src/**/*",
+  ],
+  "exclude": [
+    "**/*.browser.*",
+    "**/*.spec.*"
+  ]
 }
