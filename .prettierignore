@@ -1,7 +1,0 @@
-.pnp.js
-.yarn
-node_modules
-
-.nyc-output
-coverage
-dist
