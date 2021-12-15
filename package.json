@@ -176,7 +176,7 @@
     "ts-node": "^10.2.1",
     "type-fest": "^2.3.4",
     "typescript": "^4.4.3",
-    "vitepress": "^0.19.2"
+    "vitepress": "^0.20.9"
   },
   "dependenciesMeta": {
     "mocha": {
