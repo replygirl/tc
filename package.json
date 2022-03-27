@@ -47,7 +47,7 @@
     "docs:serve": "vitepress serve docs --port 3003",
     "lint": "eslint src",
     "lint:fix": "yarn lint --fix",
-    "test": "nyc ts-mocha"
+    "test": "nyc ts-mocha --paths"
   },
   "browserslist": "last 3 years and >0.2% in US, maintained node versions",
   "prettier": {
