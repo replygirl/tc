@@ -142,7 +142,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.18.9",
     "@antfu/ni": "^0.14.0",
-    "@rollup/plugin-commonjs": "^21.0.2",
+    "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "@swc/core": "^1.2.160",
     "@tsconfig/node16": "^1.0.2",
