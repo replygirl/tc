@@ -139,7 +139,7 @@
     "ts-mocha@9.0.0-alpha1": "patch:ts-mocha@npm:9.0.0-alpha1#.yarn/patches/ts-mocha-npm-9.0.0-alpha1-8ab4bf2e7c"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.18.9",
+    "@antfu/eslint-config": "^0.26.3",
     "@antfu/ni": "^0.14.0",
     "@rollup/plugin-commonjs": "^21.0.2",
     "@rollup/plugin-node-resolve": "^13.1.3",
