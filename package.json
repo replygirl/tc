@@ -34,14 +34,13 @@
   },
   "main": "dist/index.js",
   "module": "dist/tc.esm.js",
-  "browser": "dist/tc.iife.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist/**/*",
     "docs/**/*.md"
   ],
   "scripts": {
-    "build": "tsc --emitDeclarationOnly; rollup -c rollup.config.ts; rollup -c rollup.config.browser.ts",
+    "build": "tsc --emitDeclarationOnly; rollup -c rollup.config.ts",
     "docs:build": "vitepress build docs",
     "docs:dev": "vitepress dev docs --port 3003",
     "docs:serve": "vitepress serve docs --port 3003",
