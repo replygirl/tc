@@ -43,7 +43,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint-config-prettier", "npm:6.11.0"],\
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],\
             ["@types/mocha", "npm:9.1.0"],\
-            ["@types/node", "npm:16.11.26"],\
+            ["@types/node", "npm:18.11.7"],\
             ["@types/prettier", "npm:2.4.4"],\
             ["@vue/compiler-sfc", "npm:3.2.31"],\
             ["@yarnpkg/sdks", "npm:2.6.0"],\
@@ -908,7 +908,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint-config-prettier", "npm:6.11.0"],\
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],\
             ["@types/mocha", "npm:9.1.0"],\
-            ["@types/node", "npm:16.11.26"],\
+            ["@types/node", "npm:18.11.7"],\
             ["@types/prettier", "npm:2.4.4"],\
             ["@vue/compiler-sfc", "npm:3.2.31"],\
             ["@yarnpkg/sdks", "npm:2.6.0"],\
@@ -1381,10 +1381,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:16.11.26", {\
-          "packageLocation": "./.yarn/cache/@types-node-npm-16.11.26-6163d95b7d-57757caaba.zip/node_modules/@types/node/",\
+        ["npm:18.11.7", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-18.11.7-0cf2ce3a09-69d630825c.zip/node_modules/@types/node/",\
           "packageDependencies": [\
-            ["@types/node", "npm:16.11.26"]\
+            ["@types/node", "npm:18.11.7"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3476,7 +3476,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ]],\
       ["esbuild", [\
         ["npm:0.14.28", {\
-          "packageLocation": "./.yarn/unplugged/esbuild-npm-0.14.28-c2ae07b619/node_modules/esbuild/",\
+          "packageLocation": "./.yarn/cache/esbuild-npm-0.14.28-c2ae07b619-4c406d6bb4.zip/node_modules/esbuild/",\
           "packageDependencies": [\
             ["esbuild", "npm:0.14.28"],\
             ["esbuild-android-64", "npm:0.14.28"],\
@@ -7982,7 +7982,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tsconfig/node12", "npm:1.0.9"],\
             ["@tsconfig/node14", "npm:1.0.1"],\
             ["@tsconfig/node16", "npm:1.0.2"],\
-            ["@types/node", "npm:16.11.26"],\
+            ["@types/node", "npm:18.11.7"],\
             ["@types/swc__core", null],\
             ["@types/swc__wasm", null],\
             ["@types/typescript", null],\
