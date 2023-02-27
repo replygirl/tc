@@ -43,7 +43,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint-config-prettier", "npm:6.11.0"],\
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],\
             ["@types/mocha", "npm:9.1.0"],\
-            ["@types/node", "npm:16.11.26"],\
+            ["@types/node", "npm:18.14.2"],\
             ["@types/prettier", "npm:2.4.4"],\
             ["@vue/compiler-sfc", "npm:3.2.31"],\
             ["@yarnpkg/sdks", "npm:2.6.0"],\
@@ -908,7 +908,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint-config-prettier", "npm:6.11.0"],\
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],\
             ["@types/mocha", "npm:9.1.0"],\
-            ["@types/node", "npm:16.11.26"],\
+            ["@types/node", "npm:18.14.2"],\
             ["@types/prettier", "npm:2.4.4"],\
             ["@vue/compiler-sfc", "npm:3.2.31"],\
             ["@yarnpkg/sdks", "npm:2.6.0"],\
@@ -1381,10 +1381,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:16.11.26", {\
-          "packageLocation": "./.yarn/cache/@types-node-npm-16.11.26-6163d95b7d-57757caaba.zip/node_modules/@types/node/",\
+        ["npm:18.14.2", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-18.14.2-ba0496d563-53c07e721f.zip/node_modules/@types/node/",\
           "packageDependencies": [\
-            ["@types/node", "npm:16.11.26"]\
+            ["@types/node", "npm:18.14.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -7982,7 +7982,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tsconfig/node12", "npm:1.0.9"],\
             ["@tsconfig/node14", "npm:1.0.1"],\
             ["@tsconfig/node16", "npm:1.0.2"],\
-            ["@types/node", "npm:16.11.26"],\
+            ["@types/node", "npm:18.14.2"],\
             ["@types/swc__core", null],\
             ["@types/swc__wasm", null],\
             ["@types/typescript", null],\
